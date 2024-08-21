@@ -1,0 +1,38 @@
+### post blog 1
+POST http://localhost:3001/api/blogs
+Content-Type: application/json
+
+{
+  "title": "TTTitle 1",
+  "author": "AAAuthor 1",
+  "url": "UURRLL 1",
+  "likes": 111
+}
+
+### post blog 2
+POST http://localhost:3001/api/blogs
+Content-Type: application/json
+
+{
+  "title": "TTTitle 2",
+  "author": "AAAuthor 2",
+  "url": "UURRLL 2",
+  "likes": 222
+}
+
+### post wrongly
+POST http://localhost:3001/api/blogs
+Content-Type: application/json
+
+{
+  "title": "TTTitle 2",
+  "author": "AAAuthor 2",
+  "url": "UURRLL 2",
+  "likes": 222,
+}
+
+### get all blogs
+GET http://localhost:3001/api/blogs
+
+### get wrongly
+GET http://localhost:3001/api
