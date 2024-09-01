@@ -178,6 +178,29 @@ describe.only('400 Bad Request if missing title or url', () => {
   })
 })
 
+describe.only('test deleting a single blog post resource', () => {
+  test.only('delete the first blog', async () => {
+    const response = await api.get('/api/blogs')
+    const firstBlog = response.body[0]
+    await api
+      .delete(`/api/blogs/${firstBlog.id}`)
+      .expect(204)
+  })
+})
+
+describe.only('test updating the information of an individual blog post', () => {
+  test.only('update the likes of the first blog', async () => {
+    const response = await api.get('/api/blogs')
+    const firstBlog = response.body[0]
+    const likes = firstBlog.likes
+    const updated = await api
+      .put(`/api/blogs/${firstBlog.id}`)
+      .send({ ...firstBlog, likes: likes + 10 })
+    // console.log('updated', updated.body)
+    assert.strictEqual(updated.body.likes, likes + 10)
+  })
+})
+
 after(async () => {
   await mongoose.connection.close()
   console.log('connection closed')
