@@ -12,7 +12,14 @@ blogsRouter.get('/', async (request, response, next) => {
 
 blogsRouter.post('/', async (request, response, next) => {
   try {
-    const blog = new Blog(request.body)
+    const { title, url, likes } = request.body
+    // missing the title or url properties
+    if (!title || !url) {
+      response.status(400).end()
+    }
+    const blog = !likes
+      ? new Blog({ ...request.body, likes: 0 })
+      : new Blog(request.body)
     const result = await blog.save()
     response.status(201).json(result)
   } catch (error) {

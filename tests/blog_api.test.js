@@ -65,6 +65,24 @@ const postBlog = {
   likes: 7,
 }
 
+const postBlogMissingLikes = {
+  title: 'React patterns',
+  author: 'Michael Chan',
+  url: 'https://reactpatterns.com/',
+}
+
+const postBlogMissingTitle = {
+  author: 'Michael Chan',
+  url: 'https://reactpatterns.com/',
+  likes: 7,
+}
+
+const postBlogMissingUrl = {
+  title: 'React patterns',
+  author: 'Michael Chan',
+  likes: 7,
+}
+
 beforeEach(async () => {
   await Blog.deleteMany({})
   for (const blog of initialBlogs) {
@@ -119,6 +137,44 @@ describe.only('verify POST request to the /api/blogs', () => {
     const response = await api.get('/api/blogs')
     const blog = response.body.pop()
     assert(blog.title.includes('React patterns'))
+  })
+})
+
+describe.only('ensure default missing likes is 0', () => {
+  test.only('the number is correct', async () => {
+    await api
+      .post('/api/blogs')
+      .send(postBlogMissingLikes)
+      .expect(201)
+    const response = await api.get('/api/blogs')
+    const blog = response.body.pop()
+    assert.strictEqual(blog.likes, 0)
+  })
+
+  test.only('blogs with likes not affected', async () => {
+    await api
+      .post('/api/blogs')
+      .send(postBlog)
+      .expect(201)
+    const response = await api.get('/api/blogs')
+    const blog = response.body.pop()
+    assert.strictEqual(blog.likes, 7)
+  })
+})
+
+describe.only('400 Bad Request if missing title or url', () => {
+  test.only('if missing the title property', async () => {
+    await api
+      .post('/api/blogs')
+      .send(postBlogMissingTitle)
+      .expect(400)
+  })
+
+  test.only('if missing the url property', async () => {
+    await api
+      .post('/api/blogs')
+      .send(postBlogMissingUrl)
+      .expect(400)
   })
 })
 
