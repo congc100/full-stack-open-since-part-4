@@ -1,0 +1,17 @@
+### success log in as user 1
+POST http://localhost:3001/api/login
+Content-Type: application/json
+
+{
+  "username": "nihao99",
+  "password": "mimamima"
+}
+
+### fail log in as user 1
+POST http://localhost:3001/api/login
+Content-Type: application/json
+
+{
+  "username": "nihao99",
+  "password": "11"
+}
