@@ -15,7 +15,8 @@ blogsRouter.post('/', async (request, response, next) => {
     const { title, url, likes } = request.body
     // missing the title or url properties
     if (!title || !url) {
-      response.status(400).end()
+      response.status(400).send({ error: 'missing title or url' })
+      return
     }
     const blog = !likes
       ? new Blog({ ...request.body, likes: 0 })
