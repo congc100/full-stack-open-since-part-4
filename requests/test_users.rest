@@ -20,3 +20,44 @@ Content-Type: application/json
 
 ### get all users
 GET http://localhost:3001/api/users
+
+### too short username
+POST http://localhost:3001/api/users
+Content-Type: application/json
+
+{
+  "username": "a",
+  "name": "a",
+  "password": "ggddggdd"
+}
+
+### too short password
+POST http://localhost:3001/api/users
+Content-Type: application/json
+
+{
+  "username": "bbbb",
+  "name": "bbbb",
+  "password": "p"
+}
+
+### same username
+POST http://localhost:3001/api/users
+Content-Type: application/json
+
+{
+  "username": "zaijian88",
+  "name": "Zai Jian same",
+  "password": "ggddggdd"
+}
+
+### missing username
+POST http://localhost:3001/api/users
+Content-Type: application/json
+
+{
+  "username": "",
+  "name": "Zai Jian no",
+  "password": "ggddggdd"
+}
+
