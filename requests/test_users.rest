@@ -1,0 +1,22 @@
+### post user 1
+POST http://localhost:3001/api/users
+Content-Type: application/json
+
+{
+  "username": "nihao99",
+  "name": "Ni Hao",
+  "password": "mimamima"
+}
+
+### post user 2
+POST http://localhost:3001/api/users
+Content-Type: application/json
+
+{
+  "username": "zaijian88",
+  "name": "Zai Jian",
+  "password": "ggddggdd"
+}
+
+### get all users
+GET http://localhost:3001/api/users
