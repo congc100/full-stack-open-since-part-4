@@ -1,7 +1,7 @@
-### post blog 1
+### post blog by user 1
 POST http://localhost:3001/api/blogs
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im5paGFvOTkiLCJpZCI6IjY3MjE0OTJjYmRjMTNiZGQyZDE1YmUwNCIsImlhdCI6MTczMDIzNDgyNX0.XesMGwA-TiNr3yRttEI0ebYuSzPSr799r4GnykNvir4
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im5paGFvOTkiLCJpZCI6IjY3MjE0OTJjYmRjMTNiZGQyZDE1YmUwNCIsImlhdCI6MTczMDIzNTk5NX0.gh-nk6ZYKbQcbxwys-HlG3FGauM5gJLhTgRF1D1U524
 
 {
   "title": "TTTitle 1",
@@ -10,30 +10,20 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im5pa
   "likes": 111
 }
 
-### post blog 2
-POST http://localhost:3001/api/blogs
+### normal delete should fail
+DELETE http://localhost:3001/api/blogs/67214ef7a36afc663085fbf6
 Content-Type: application/json
 
-{
-  "title": "TTTitle 2",
-  "author": "AAAuthor 2",
-  "url": "UURRLL 2",
-  "likes": 222
-}
-
-### post wrongly
-POST http://localhost:3001/api/blogs
+### delete blog by user 2 should fail
+DELETE http://localhost:3001/api/blogs/67214ef7a36afc663085fbf6
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InphaWppYW44OCIsImlkIjoiNjcyMDJjYjM1NWY4YjI4YTg2ZGJlZjJjIiwiaWF0IjoxNzMwMjM2MDI1fQ.TJbWmjuS0zaB4a8uQO4RInj52FNGMhd9DND7jQdUtZ0
 
-{
-  "title": "",
-  "author": "AAAuthor 3",
-  "url": "UURRLL 3",
-  "likes": 333
-}
+
+### delete blog by user 1 should succeed
+DELETE http://localhost:3001/api/blogs/67214ef7a36afc663085fbf6
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im5paGFvOTkiLCJpZCI6IjY3MjE0OTJjYmRjMTNiZGQyZDE1YmUwNCIsImlhdCI6MTczMDIzNTk5NX0.gh-nk6ZYKbQcbxwys-HlG3FGauM5gJLhTgRF1D1U524
 
 ### get all blogs
 GET http://localhost:3001/api/blogs
-
-### get wrongly
-GET http://localhost:3001/api
